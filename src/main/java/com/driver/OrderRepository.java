@@ -16,13 +16,16 @@ public class OrderRepository {
     }
 
     public void addOrder(Order order){
-        orderMap.put(order.getId(),order);
+         orderMap.put(order.getId(),order);
+
     }
     public void addPartner(String partnerId){
         deliveryPartnerMap.put(partnerId,new DeliveryPartner(partnerId));
     }
     public void addOrderPartnerPair(String orderId, String partnerId){
         orderPartnerMap.put(orderId,partnerId);
+        int orders =deliveryPartnerMap.get(partnerId).getNumberOfOrders()+1;
+        deliveryPartnerMap.get(partnerId).setNumberOfOrders(orders);
     }
     public Order getOrderById(String orderId){
         return orderMap.get(orderId);
@@ -43,13 +46,14 @@ public class OrderRepository {
         List<String>order=new ArrayList<>();
         for(String orderId:orderPartnerMap.keySet()){
             if(orderPartnerMap.get(orderId).equals(partnerId)){
-                order.add(String.valueOf(orderMap.get(orderId)));
+                order.add(orderPartnerMap.get(orderId));
             }
         }
         return order;
     }
-    public List<String> getAllOrders() {
-        return new ArrayList<>(Integer.parseInt(orderMap.toString()));
+    public List<Order> getAllOrders() {
+
+        return new ArrayList<>(orderMap.values());
     }
     public int getCountOfUnassignedOrders(){
         int count=0;

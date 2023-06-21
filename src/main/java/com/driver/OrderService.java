@@ -2,7 +2,6 @@ package com.driver;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -11,6 +10,7 @@ public class OrderService {
     OrderRepository orderRepository;
     public void addOrder(Order order){
          orderRepository.addOrder(order);
+
     }
     public void addPartner(String partnerId){
         orderRepository.addPartner(partnerId);
@@ -27,10 +27,10 @@ public class OrderService {
     public int getOrderCountByPartnerId(String partnerId){
         return orderRepository.getOrderCountByPartnerId(partnerId);
     }
-    public List<String> getOrdersByPartnerId(String partnerId){
-        return orderRepository.getOrdersByPartnerId(partnerId);
+    public String getOrdersByPartnerId(String partnerId){
+        return orderRepository.getOrdersByPartnerId(partnerId).toString();
     }
-    public List<String> getAllOrders() {
+    public List<Order> getAllOrders() {
         return orderRepository.getAllOrders();
     }
     public int getCountOfUnassignedOrders(){
