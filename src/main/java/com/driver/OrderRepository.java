@@ -20,7 +20,7 @@ public class OrderRepository {
         deliveryPartnerDb.put(partnerId,new DeliveryPartner(partnerId));
     }
     public void addOrderPartnerPair(String orderId, String partnerId){
-        if(ordersDb.containsKey(orderId) && orderPartnerDb.containsKey(partnerId)){
+        if(ordersDb.containsKey(orderId) && deliveryPartnerDb.containsKey(partnerId)){
             orderPartnerDb.put(orderId,partnerId);
             List<String>currOrder=new ArrayList<>();
             if(partnerDb.containsKey(partnerId)){
@@ -29,7 +29,8 @@ public class OrderRepository {
             currOrder.add(orderId);
             partnerDb.put(partnerId,currOrder);
            DeliveryPartner deliveryPartner=deliveryPartnerDb.get(partnerId);
-            deliveryPartner.setNumberOfOrders(currOrder.size());
+            deliveryPartner.setNumberOfOrders(currOrder.size()+1);
+
         }
     }
     public Order getOrderById(String orderId){
@@ -39,14 +40,14 @@ public class OrderRepository {
         return deliveryPartnerDb.get(partnerId);
     }
     public int getOrderCountByPartnerId(String partnerId){
-//        int count=0;
-//        for (String orderId:orderPartnerDb.keySet()) {
-//            if(orderPartnerDb.get(orderId).equals(partnerId)){
-//                count++;
-//            }
-//        }
-//        return count;
-        return partnerDb.get(partnerId).size();
+        int count=0;
+        for (String orderId:orderPartnerDb.keySet()) {
+            if(orderPartnerDb.get(orderId).equals(partnerId)){
+                count++;
+            }
+        }
+        return count;
+       // return partnerDb.get(partnerId).size();
     }
     public List<String> getOrdersByPartnerId(String partnerId){
 //        List<String>order=new ArrayList<>();
@@ -68,7 +69,7 @@ public class OrderRepository {
     public int getCountOfUnassignedOrders(){
         int count=0;
         for (String orderId:ordersDb.keySet()){
-            if(!ordersDb.containsKey(orderId)){
+            if(ordersDb.containsKey(orderId) && !orderPartnerDb.containsKey(orderId)){
                 count++;
             }
         }
