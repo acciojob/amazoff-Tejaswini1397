@@ -5,16 +5,15 @@ import java.util.*;
 
 @Repository
 public class OrderRepository {
-    private final Map<String,Order>ordersDb=new HashMap<>();
-    private final Map<String,DeliveryPartner>deliveryPartnerDb=new HashMap<>();
-    private final Map<String,String>orderPartnerDb=new HashMap<>();
+   public Map<String,Order>ordersDb=new HashMap<>();
+    public Map<String,DeliveryPartner>deliveryPartnerDb=new HashMap<>();
+    public Map<String,String>orderPartnerDb=new HashMap<>();
 
-    private final Map<String, List<String>>partnerDb=new HashMap<>();
+    public Map<String, List<String>>partnerDb=new HashMap<>();
 
 
     public void addOrder(Order order){
          ordersDb.put(order.getId(),order);
-
     }
     public void addPartner(String partnerId){
         deliveryPartnerDb.put(partnerId,new DeliveryPartner(partnerId));

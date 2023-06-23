@@ -3,13 +3,12 @@ package com.driver.test;
 import com.driver.*;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class Testcases2 {
-    //    @Autowired
+      // @Autowired
     OrderRepository orderRepository;
     OrderService orderService;
     OrderController orderController;
@@ -17,14 +16,14 @@ public class Testcases2 {
     @BeforeEach
     public void setup(){
         orderRepository=new OrderRepository();
-        orderService=new OrderService(orderRepository);
-        orderController =new OrderController(orderService);
+        orderService=new OrderService();
+        orderController =new OrderController();
     }
     @Test
     public void addOrderSuccesfull(){
         OrderRepository orderRepository=new OrderRepository();
-        OrderService orderService=new OrderService(orderRepository);
-        orderController =new OrderController(orderService);
+        OrderService orderService=new OrderService();
+        orderController =new OrderController();
 
         Order order=new Order("1","20:20");
         orderController.addOrder(order);
@@ -33,8 +32,8 @@ public class Testcases2 {
     @Test
     public void addPartnerSuccesfull(){
         OrderRepository orderRepository=new OrderRepository();
-        OrderService orderService=new OrderService(orderRepository);
-        orderController =new OrderController(orderService);
+        OrderService orderService=new OrderService();
+        orderController =new OrderController();
 
         DeliveryPartner   deliveryPartner=new DeliveryPartner("10");
         orderController.addPartner("10");
@@ -43,8 +42,8 @@ public class Testcases2 {
     @Test
     public void addPartnerOrderPairSuccesfull(){
         OrderRepository orderRepository=new OrderRepository();
-        OrderService orderService=new OrderService(orderRepository);
-        orderController =new OrderController(orderService);
+        OrderService orderService=new OrderService();
+        orderController =new OrderController();
 
         Order order=new Order("1","20:20");
         orderController.addOrder(order);
