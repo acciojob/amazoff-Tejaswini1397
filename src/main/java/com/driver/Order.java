@@ -16,7 +16,8 @@ public class Order {
 
         this.id=id;
        String time[] = deliveryTime.split(":");
-       this.deliveryTime= Integer.parseInt(time[0])*60 +Integer.parseInt(time[1]);
+       //this.deliveryTime= Integer.parseInt(time[0])*60 +Integer.parseInt(time[1]);
+        this.deliveryTime = (Integer.parseInt(time[0]) * 60) + Integer.parseInt(time[1]);
         //this.deliveryTime=Integer.parseInt(deliveryTime);
     }
 
@@ -34,11 +35,5 @@ public class Order {
 
     public int getDeliveryTime() {return deliveryTime;}
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id='" + id + '\'' +
-                ", deliveryTime=" + deliveryTime +
-                '}';
-    }
+
 }
