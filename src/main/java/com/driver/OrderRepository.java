@@ -28,7 +28,7 @@ public class OrderRepository {
             currOrder.add(orderId);
             partnerDb.put(partnerId,currOrder);
            DeliveryPartner deliveryPartner=deliveryPartnerDb.get(partnerId);
-            deliveryPartner.setNumberOfOrders(currOrder.size()+1);
+            deliveryPartner.setNumberOfOrders(currOrder.size());
 
         }
     }

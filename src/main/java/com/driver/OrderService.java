@@ -6,12 +6,12 @@ import java.util.List;
 
 @Service
 public class OrderService {
-    @Autowired
-    OrderRepository orderRepository;
 
-//    public OrderService() {
-//        this.orderRepository=orderRepository;
-//    }
+    OrderRepository orderRepository=new OrderRepository();
+
+    public OrderService() {
+        this.orderRepository=orderRepository;
+    }
 
     public void addOrder(Order order){
          orderRepository.addOrder(order);
