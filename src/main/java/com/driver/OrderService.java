@@ -8,6 +8,11 @@ import java.util.List;
 public class OrderService {
     @Autowired
     OrderRepository orderRepository;
+
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository=orderRepository;
+    }
+
     public void addOrder(Order order){
          orderRepository.addOrder(order);
 
